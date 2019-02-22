@@ -1,19 +1,20 @@
 version: '3.6'
 services:
   goose:
-    container_name: dc-k8s-goose
+    container_name: dck-k8s-goose
     image: k8s-goose
     environment:
       - PORT=8080
+
   koose:
     build:
       context: .
-    container_name: dc-k8s-koose
+    container_name: dck-k8s-koose
     image: k8s-koose
     depends_on:
       - goose
     ports:
-      - 8081:8080
+      - 8082:8080
     environment:
       - SERVER_PORT=8080
       - SERVICE_GOOSE_URL=http://goose:8080

@@ -16,7 +16,12 @@ start:
 
 stop:
 	docker stop k8s-koose
+
+remove:
 	docker rm k8s-koose
+
+logs:
+	docker logs -f k8s-koose
 
 cluster-up:
 	docker-compose up -d
@@ -30,5 +35,11 @@ cluster-start:
 cluster-stop:
 	docker-compose stop
 
-logs:
-	docker logs -f k8s-koose
+cluster-logs:
+	docker-compose logs -f koose goose
+
+cluster-logs-koose:
+	@docker-compose logs -f koose
+
+cluster-logs-goose:
+	@docker-compose logs -f goose
