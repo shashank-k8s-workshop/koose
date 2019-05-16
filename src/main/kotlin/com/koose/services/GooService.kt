@@ -11,7 +11,7 @@ import retrofit2.http.Header
 @Service
 class GooService(@Value("\${service.goose.url:http://localhost:8080}") val gooseUrl : String) {
 
-    private var gooFacade: GooFacade
+    private lateinit var gooFacade: GooFacade
 
     init {
         val retrofit = Retrofit.Builder()
