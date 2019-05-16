@@ -28,7 +28,8 @@ class KooController {
     @GetMapping("/koo")
     fun koo(reqEntity: RequestEntity<Void>): ResponseEntity<KooResponse> {
         logger.info("koo api invoked")
-        val gooResponse = gooService.goo()
+        logger.info("traceHeader: ${reqEntity.headers[AMAZON_TRACE_ID]?.toString()}")
+        val gooResponse = gooService.goo(reqEntity.headers[AMAZON_TRACE_ID]?.toString())
         if (gooResponse == null) {
             logger.error("goo service request failed")
             return ResponseEntity(HttpStatus.INTERNAL_SERVER_ERROR)
