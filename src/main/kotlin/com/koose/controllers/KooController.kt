@@ -23,7 +23,7 @@ class KooController {
     private val serviceName = "koose"
 
     @Value("\${version}")
-    private val version = "0.1.0"
+    private val version = "0.2.0"
 
     @GetMapping("/koo")
     fun koo(reqEntity: RequestEntity<Void>): ResponseEntity<KooResponse> {
