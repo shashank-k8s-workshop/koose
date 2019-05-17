@@ -5,7 +5,6 @@ import com.koose.services.GooService
 import org.apache.logging.log4j.LogManager
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.beans.factory.annotation.Value
-import org.springframework.http.HttpHeaders
 import org.springframework.http.HttpStatus
 import org.springframework.http.RequestEntity
 import org.springframework.http.ResponseEntity
@@ -23,7 +22,7 @@ class KooController {
     private val serviceName = "koose"
 
     @Value("\${version}")
-    private val version = "0.2.0"
+    private val version = ""
 
     @GetMapping("/koo")
     fun koo(reqEntity: RequestEntity<Void>): ResponseEntity<KooResponse> {
