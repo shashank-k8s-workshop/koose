@@ -27,8 +27,10 @@ class KooController {
     @GetMapping("/koo")
     fun koo(reqEntity: RequestEntity<Void>): ResponseEntity<KooResponse> {
         logger.info("koo api invoked")
-        logger.info("traceHeader: ${reqEntity.headers[AMAZON_TRACE_ID]?.toString()}")
-        val gooResponse = gooService.goo(reqEntity.headers[AMAZON_TRACE_ID]?.toString())
+        val traceHeader = extractTraceHeader(reqEntity)
+        val reqIdHeader = extractReqId(reqEntity)
+        logger.info("traceHeader: $traceHeader, reqIdHeader: $reqIdHeader")
+        val gooResponse = gooService.goo(traceHeader,reqIdHeader)
         if (gooResponse == null) {
             logger.error("goo service request failed")
             return ResponseEntity(HttpStatus.INTERNAL_SERVER_ERROR)
@@ -40,4 +42,10 @@ class KooController {
     fun healthCheck(): ResponseEntity<String> {
         return ResponseEntity.ok("healthy")
     }
+
+    private fun extractReqId(reqEntity: RequestEntity<Void>) =
+            reqEntity.headers[AMAZON_REQ_ID]?.firstOrNull()
+
+    private fun extractTraceHeader(reqEntity: RequestEntity<Void>) =
+            reqEntity.headers[AMAZON_TRACE_ID]?.firstOrNull()
 }
