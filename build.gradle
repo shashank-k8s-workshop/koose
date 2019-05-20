@@ -32,5 +32,8 @@ dependencies {
     compile "org.apache.logging.log4j:log4j-core:2.11.1"
     compile 'com.squareup.retrofit2:retrofit:2.5.0'
     compile 'com.squareup.retrofit2:converter-gson:2.1.0'
+
+    compile 'com.amazonaws:aws-xray-recorder-sdk-core:2.2.1'
+    
     testCompile('org.springframework.boot:spring-boot-starter-test')
 }

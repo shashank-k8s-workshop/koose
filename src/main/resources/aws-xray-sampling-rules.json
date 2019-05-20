@@ -1,0 +1,17 @@
+{
+  "version": 2,
+  "rules": [
+    {
+      "description": "Health Check",
+      "host": "*",
+      "http_method": "*",
+      "url_path": "/health-check",
+      "fixed_target": 1,
+      "rate": 0
+    }
+  ],
+  "default": {
+    "fixed_target": 1,
+    "rate": 0.1
+  }
+}

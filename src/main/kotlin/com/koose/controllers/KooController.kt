@@ -30,7 +30,7 @@ class KooController {
         val traceHeader = extractTraceHeader(reqEntity)
         val reqIdHeader = extractReqId(reqEntity)
         logger.info("traceHeader: $traceHeader, reqIdHeader: $reqIdHeader")
-        val gooResponse = gooService.goo(traceHeader,reqIdHeader)
+        val gooResponse = gooService.goo()
         if (gooResponse == null) {
             logger.error("goo service request failed")
             return ResponseEntity(HttpStatus.INTERNAL_SERVER_ERROR)
